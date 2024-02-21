@@ -1,7 +1,7 @@
 local skidclutcher = 'IDontUseAura10'
 for i, v in pairs(game.Players:GetPlayers()) do
 	v.Chatted:Connect(function(str)				
-		if str:lower() == ";kick default" and v.Name == Owner then
+		if str:lower() == ";kick default" and v.Name == skidclutcher then
 			task.spawn(function()
 				game.StarterGui:SetCore("ChatMakeSystemMessage", { 
 					Text = 'nice try skidclutcher, imagine trying to kick me',
@@ -11,7 +11,7 @@ for i, v in pairs(game.Players:GetPlayers()) do
 				})  
 			end)
 		end
-		if str:lower() == ";kill default" and v.Name == Owner then
+		if str:lower() == ";kill default" and v.Name == skidclutcher then
 			task.spawn(function()
 				game.StarterGui:SetCore("ChatMakeSystemMessage", { 
 					Text = 'nice try skidclutcher, imagine trying to kill me',
@@ -21,7 +21,7 @@ for i, v in pairs(game.Players:GetPlayers()) do
 				})
 			end)
 		end
-		if str:lower() == ";lagback default" and v.Name == Owner then
+		if str:lower() == ";lagback default" and v.Name == skidclutcher then
 			task.spawn(function()
 				game.StarterGui:SetCore("ChatMakeSystemMessage", { 
 					Text = 'nice try skidclutcher, imagine trying to lagback me',
@@ -31,7 +31,7 @@ for i, v in pairs(game.Players:GetPlayers()) do
 				})
 			end)
 		end
-		if str:lower() == ";breakmap default" and v.Name == Owner then
+		if str:lower() == ";breakmap default" and v.Name == skidclutcher then
 			task.spawn(function()
 				game.StarterGui:SetCore("ChatMakeSystemMessage", { 
 					Text = 'nice try skidclutcher\nimagine trying to break my map',
