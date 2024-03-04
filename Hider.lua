@@ -1,4 +1,4 @@
--- i will say this shit is just name hider
+-- i will say this shit is just name hider no cap
 local players = game.Players
 local lplr = players.LocalPlayer
 local hiderdata = {
