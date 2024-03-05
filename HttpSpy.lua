@@ -45,7 +45,7 @@ end))
 -- // Spy #1 \\ --
 local oldHttpGet
 oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
-	if url:find("github") or url:find("pastebin") then
+	if url:find("github") or url:find("pastebin") or not url:find('github') or not url:find('pastebin') then
 		detectLink("Http.log", "Http", url)
 		if HttpSpySettings['AntiHttpGet'] then
 			return nil
