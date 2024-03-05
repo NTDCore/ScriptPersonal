@@ -2,6 +2,9 @@
 -- HttpSpy Powered By NSL
 
 -- // Instance \\ --
+if not shared.HttpSpy then
+	shared.HttpSpy = {}
+end
 local HttpSpySettings = {
 	['AntiHttpGet'] = shared.HttpSpy.AntiHttpGet or false,
 	['AntiWebSocket'] = shared.HttpSpy.AntiWebSocket or false,
