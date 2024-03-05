@@ -5,7 +5,7 @@
 local HttpSpySettings = {
 	['AntiHttpGet'] = shared.HttpSpy.AntiHttpGet or false,
 	['AntiWebSocket'] = shared.HttpSpy.AntiWebSocket or false,
-	['AntiRequest'] = shared.HttpSpy.AntiDiscord or true,
+	['AntiRequest'] = shared.HttpSpy.AntiRequest or true,
 	['AntiKick'] = shared.HttpSpy.AntiKick or false,
 	['AntiFPS'] = shared.HttpSpy.AntiFPS or false
 }
