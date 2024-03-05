@@ -61,8 +61,6 @@ if HttpSpySettings['AntiKick'] then
 		local method = getnamecallmethod()
 		if self == lplr and method == "Kick" or method == "kick" then
 			return nil
-		elseif method == "Shutdown" then
-			return nil
 		end
 		return oldantikick(self,...)
 	end)
