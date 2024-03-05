@@ -54,19 +54,6 @@ oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
 	return oldHttpGet(newgame, url)
 end))
 
--- // Anti Kick \\ --
---[[
-if HttpSpySettings['AntiKick'] then
-	local oldantikick
-	oldantikick = hookmetamethod(game, "__namecall", function(self,...)
-		local method = getnamecallmethod()
-		if self == lplr and method == "Kick" or method == "kick" then
-			return nil
-		end
-		return oldantikick(self,...)
-	end)
-end]]
-
 -- // Anti FPS \\ --
 if HttpSpySettings['AntiFPS'] then
 	local fpsfunc = setfpscap
