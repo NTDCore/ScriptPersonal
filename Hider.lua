@@ -18,6 +18,18 @@ for i,v in pairs(players:GetPlayers()) do
 	table.remove(playerstable, 1)
 end
 
+players.PlayerAdded:Connect(function(plr)
+	table.insert(playerstable, plr)
+	for i,v in pairs(playerstable) do
+		v.Name = hiderdata['Everyone']['Name']
+		v.DisplayName = hiderdata['Everyone']['DisplayName']
+	end
+end)
+
+players.PlayerRemoving:Connect(function(plr)
+	table.remove(playerstable, plr)
+end)
+
 lplr.Name = hiderdata['Yourself']['Name']
 lplr.DisplayName = hiderdata['Yourself']['DisplayName']
 
