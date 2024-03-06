@@ -2,6 +2,8 @@
 -- HttpSpy Powered By NSL
 
 -- // Instance \\ --
+
+print('HttpSpy Loaded!')
 if not shared.HttpSpy then
 	shared.HttpSpy = {}
 end
@@ -34,6 +36,7 @@ end
 local oldrequest
 oldrequest = hookfunct(request, newcclosure(function(req)
 	if req.Url:find("discord") or not req.Url:find('webhook') then
+		print('Detected Request: '.. req.Url)
 		detectLink("request.log", "Request", req.Url)
 		if HttpSpySettings['AntiRequest'] then
 			return nil
@@ -46,6 +49,7 @@ end))
 local oldHttpGet
 oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
 	if url:find("github") or url:find("pastebin") or not url:find('github') or not url:find('pastebin') then
+		print('Detected Link: '.. url)
 		detectLink("Http.log", "Http", url)
 		if HttpSpySettings['AntiHttpGet'] then
 			return nil
