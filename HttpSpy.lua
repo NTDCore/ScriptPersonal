@@ -88,7 +88,7 @@ if HttpSpySettings['AntiFPS'] then
 		return 9000000000
 	end
 	local oneFps = function()
-		return 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9
+		return 0 or 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9
 	end
 	local tenFps = function()
 		return 10 or 11 or 12 or 13 or 14 or 15 or 16 or 18 or 18 or 19
@@ -98,7 +98,7 @@ if HttpSpySettings['AntiFPS'] then
 	end
 	oldcrash = hookfunct(fpsfunc, newcclosure(function(value)
 		-- wtf is this
-		if value:len() >= 10 and value:sub(1,10) == nineEnine() or value:len() >= 3 and value:sub(1,3) == 9e9 or value:len() >= 9 and value:sub(1,9) == math.huge or value:len() >= 1 and value:sub(1,1) == 0 or value:len() >= 1 and value:sub(1,1) == oneFps() or value:len() >= minusValue() and value:sub(1,2) == minusFps() or value:len() >= 2 and value:sub(1,3) == tenFps() then
+		if value:len() >= 10 and value:sub(1,10) == nineEnine() or value:len() >= 3 and value:sub(1,3) == 9e9 or value:len() >= 9 and value:sub(1,9) == math.huge or value:len() >= 1 and value:sub(1,1) == 0 or value:len() >= 1 and value:sub(1,1) == oneFps() or value:len() >= 2 and value:sub(1,2) == minusFps() or value:len() >= 2 and value:sub(1,3) == tenFps() then
 			return 144
 		end
 		return oldcrash(value)
