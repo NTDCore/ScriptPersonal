@@ -8,6 +8,7 @@ if not shared.HttpSpy then
 	shared.HttpSpy = {}
 end
 local HttpSpySettings = {
+	['Notifications'] = shared.HttpSpy.Notifications or false,
 	['AntiHttpGet'] = shared.HttpSpy.AntiHttpGet or false,
 	['AntiWebSocket'] = shared.HttpSpy.AntiWebSocket or false,
 	['AntiRequest'] = shared.HttpSpy.AntiRequest or true,
@@ -18,6 +19,14 @@ local hookmeta = hookmetamethod
 local websock = WebSocket and WebSocket.Connect or WebSocket and WebSocket.connect
 local hookfunct = hookfunc or hookfunction -- hookfunc in krampus lol
 local lplr = game.Players.LocalPlayer
+local startergui = game:GetService('StarterGui')
+local sendNotification = function(name, info, delay)
+	startergui:SetCore('SendNotification', {
+		Title = name,
+		Text = info,
+		Duration = delay or 5
+	})
+end
 if not isfolder("httpSpy") then
 	makefolder("httpSpy")
 end
@@ -38,6 +47,9 @@ oldrequest = hookfunct(request, newcclosure(function(req)
 	if req.Url:find("discord") and req.Url:find('webhooks') or not req.Url:find('discord') and not req.Url:find('webhooks') then
 		print('Detected Request: '.. req.Url)
 		detectLink("request.log", "Request", req.Url)
+		if HttpSpySettings['Notifications'] then
+			sendNotification('Request', 'request detected: '.. req.Url)
+		end
 		if HttpSpySettings['AntiRequest'] then
 			return nil
 		end
@@ -51,6 +63,9 @@ oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
 	if url:find("github") or url:find("pastebin") or not url:find('github') or not url:find('pastebin') then
 		print('Detected Link: '.. url)
 		detectLink("Http.log", "Http", url)
+		if HttpSpySettings['Notifications'] then
+			sendNotification('HttpGet', 'http detected: '.. url)
+		end
 		if HttpSpySettings['AntiHttpGet'] then
 			return nil
 		end
