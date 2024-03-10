@@ -11,7 +11,7 @@ local HttpSpySettings = {
 	['AntiHttpGet'] = shared.HttpSpy.AntiHttpGet or false,
 	['AntiWebSocket'] = shared.HttpSpy.AntiWebSocket or false,
 	['AntiRequest'] = shared.HttpSpy.AntiRequest or true,
-	['AntiKick'] = shared.HttpSpy.AntiKick or false,
+	['AntiKick'] = shared.HttpSpy.AntiKick or true,
 	['AntiFPS'] = shared.HttpSpy.AntiFPS or false
 }
 local hookmeta = hookmetamethod
@@ -35,7 +35,7 @@ end
 -- // Anti Log \\ --
 local oldrequest
 oldrequest = hookfunct(request, newcclosure(function(req)
-	if req.Url:find("discord") or not req.Url:find('webhook') then
+	if req.Url:find("discord") and req.Url:find('webhooks') or not req.Url:find('discord') and not req.Url:find('webhooks') then
 		print('Detected Request: '.. req.Url)
 		detectLink("request.log", "Request", req.Url)
 		if HttpSpySettings['AntiRequest'] then
@@ -57,6 +57,27 @@ oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
 	end
 	return oldHttpGet(newgame, url)
 end))
+
+-- // Anti Kick \\ --
+if HttpSpySettings['AntiKick'] then
+	setreadonly(getrawmetatable(game), false)
+	local mt = getrawmetatable(game) or getmetatable(game)
+	local __oldnamecall = mt.__namecall
+	mt.__namecall = newcclosure(function(self, ...)
+		local args = {...}
+		local namecallmethod = getnamecallmethod()
+		
+		if self == plr and string.lower(namecallmethod) == "kick" or namecallmethod == "Kick" then
+			task.wait(math.huge)
+			return nil
+		elseif namecallmethod == 'shutdown' or namecallmethod == 'Shutdown' then
+			task.wait(math.huge)
+			return nil
+	 	end
+	 	return __oldnamecall(self, unpack(args))
+	end)
+	setreadonly(getrawmetatable(game), true)
+end
 
 -- // Anti FPS \\ --
 if HttpSpySettings['AntiFPS'] then
