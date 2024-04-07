@@ -73,6 +73,25 @@ oldHttpGet = hookfunct(game.HttpGet, newcclosure(function(newgame, url)
 	return oldHttpGet(newgame, url)
 end))
 
+--[[
+--// In Dev \\ --
+-- // Spy #2 \\ --
+local oldHttpGetAsync
+oldHttpGetAsync = hookfunct(game.HttpGetAsync, newcclosure(function(newgame, url)
+	if url:find("github") or url:find("pastebin") or not url:find('github') or not url:find('pastebin') then
+		print('Detected Link: '.. url)
+		detectLink("Http.log", "Http", url)
+		if HttpSpySettings['Notifications'] then
+			sendNotification('HttpGet', 'http detected: '.. url)
+		end
+		if HttpSpySettings['AntiHttpGet'] then
+			return nil
+		end
+	end
+	return oldHttpGet(newgame, url)
+end))
+]]
+
 -- // Anti Kick \\ --
 if HttpSpySettings['AntiKick'] then
 	setreadonly(getrawmetatable(game), false)
