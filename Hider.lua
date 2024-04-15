@@ -13,21 +13,29 @@ local hiderdata = {
 }
 
 local playerstable = {}
-for i,v in pairs(players:GetPlayers()) do
+for i,v in players:GetPlayers() do
 	table.insert(playerstable, v)
-	table.remove(playerstable, 1)
+	for i2,v2 in playerstable do
+		if v2 == lplr then
+			table.remove(playerstable, i2)
+		end
+	end
 end
 
 players.PlayerAdded:Connect(function(plr)
 	table.insert(playerstable, plr)
-	for i,v in pairs(playerstable) do
+	for i,v in playerstable do
 		v.Name = hiderdata['Everyone']['Name']
 		v.DisplayName = hiderdata['Everyone']['DisplayName']
 	end
 end)
 
 players.PlayerRemoving:Connect(function(plr)
-	table.remove(playerstable, plr)
+	for i,v in playerstable do
+		if v == plr then
+			table.remove(playerstable, i)
+		end
+	end
 end)
 
 lplr.Name = hiderdata['Yourself']['Name']
