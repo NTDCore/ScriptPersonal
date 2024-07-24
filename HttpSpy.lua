@@ -18,6 +18,7 @@ local HttpSpySettings = {
 local hookmeta = hookmetamethod
 local websock = WebSocket and WebSocket.Connect or WebSocket and WebSocket.connect
 local hookfunct = hookfunc or hookfunction -- hookfunc in krampus lol
+local requests = fluxus and fluxus.request or http_request or request
 local lplr = game.Players.LocalPlayer
 local startergui = game:GetService('StarterGui')
 local sendNotification = function(name, info, delay)
@@ -43,7 +44,7 @@ end
 
 -- // Anti Log \\ --
 local oldrequest
-oldrequest = hookfunct(request, newcclosure(function(req)
+oldrequest = hookfunct(requests, newcclosure(function(req)
 	if req.Url:find("discord") and req.Url:find('webhooks') or not req.Url:find('discord') and not req.Url:find('webhooks') then
 		print('Detected Request: '.. req.Url)
 		detectLink("request.log", "Request", req.Url)
