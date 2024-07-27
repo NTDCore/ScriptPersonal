@@ -18,7 +18,7 @@ local HttpSpySettings = {
 local hookmeta = hookmetamethod
 local websock = WebSocket and WebSocket.Connect or WebSocket and WebSocket.connect
 local hookfunct = hookfunc or hookfunction -- hookfunc in krampus lol
-local requests = fluxus and fluxus.request or http_request or request
+local requests = Fluxus and Fluxus.request or fluxus and fluxus.request or http_request or http.request or request
 local lplr = game.Players.LocalPlayer
 local startergui = game:GetService('StarterGui')
 local sendNotification = function(name, info, delay)
@@ -101,15 +101,14 @@ if HttpSpySettings['AntiKick'] then
 	mt.__namecall = newcclosure(function(self, ...)
 		local args = {...}
 		local namecallmethod = getnamecallmethod()
-		
-		if self == plr and string.lower(namecallmethod) == "kick" or namecallmethod == "Kick" then
+		if self == plr and string.lower(namecallmethod) == "kick" then
 			task.wait(math.huge)
 			return nil
-		elseif namecallmethod == 'shutdown' or namecallmethod == 'Shutdown' then
+		elseif string.lower(namecallmethod) == 'shutdown' then
 			task.wait(math.huge)
 			return nil
-	 	end
-	 	return __oldnamecall(self, unpack(args))
+		end
+		return __oldnamecall(self, unpack(args))
 	end)
 	setreadonly(getrawmetatable(game), true)
 end
