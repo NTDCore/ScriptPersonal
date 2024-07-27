@@ -18,6 +18,7 @@ local HttpSpySettings = {
 local hookmeta = hookmetamethod
 local websock = WebSocket and WebSocket.Connect or WebSocket and WebSocket.connect
 local hookfunct = hookfunc or hookfunction -- hookfunc in krampus lol
+local restoreFuncs = restorefunction or restorefunc
 local requests = Fluxus and Fluxus.request or fluxus and fluxus.request or http_request or http.request or request
 local lplr = game.Players.LocalPlayer
 local startergui = game:GetService('StarterGui')
@@ -40,6 +41,10 @@ local detectLink = function(file, logname, code)
 	elseif isfile("httpSpy/"..file) then
 		appendfile("httpSpy/"..file, "\n"..code)
 	end
+end
+
+if getgenv().hookfunction == nil or getgenv().hookfunc == nil then
+	restoreFuncs(hookfunct)
 end
 
 -- // Anti Log \\ --
