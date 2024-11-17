@@ -52,7 +52,12 @@ local data = {
 		private = 2,
 		host = 3
 	},
-	checkMessage = 'hi me le uzin fapee"ee" client'
+	checkMessage = 'hi me le uzin fapee"ee" client',
+	announcements = {
+		message = '',
+		from = '',
+		duration = 1
+	}
 }
 
 data.getRank = function(plr)
