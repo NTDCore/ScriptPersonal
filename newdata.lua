@@ -56,7 +56,8 @@ local data = {
 	announcements = {
 		message = '',
 		from = '',
-		duration = 1
+		duration = 1,
+		target = 'Roblox,Hi'
 	}
 }
 
