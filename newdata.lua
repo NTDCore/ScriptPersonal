@@ -55,7 +55,7 @@ local data = {
 	checkMessage = 'hi me le uzin fapee"ee" client',
 	announcements = {
 		message = '',
-		duration = 0,
+		duration = 1,
 		targets = 'Roblox,Hi'
 	}
 }
