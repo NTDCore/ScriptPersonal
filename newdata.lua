@@ -52,7 +52,7 @@ local data = {
 		private = 2,
 		host = 3
 	},
-	checkMessage = 'hi me le uzin fapee"ee" client',
+	checkMessage = 'hi me uzin efpee"ee" client',
 	announcements = {
 		message = '',
 		duration = 1,
