@@ -35,12 +35,13 @@ local function konstant_disassemble(scriptPath: Script | ModuleScript | LocalScr
 	return call("/konstant/disassemble", scriptPath)
 end
 
-unc.require = require or function(module)
+unc.require = require and not string.lower(identifyexecutor()):find('solara') or function(module)
 	if module:IsA('ModuleScript') then
 		local source = konstant_decompile(module)
 		return loadstring(source)()
+	elseif module:IsA('LocalScript') or module:IsA('Script') then
+		warn('[Self-UNC]: attempt to require a localscript or script, Require support only ModuleScript.')
 	end
-	return ''
 end
 
 return unc
