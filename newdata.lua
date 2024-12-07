@@ -60,45 +60,4 @@ local data = {
 	}
 }
 
-data.getRank = function(plr)
-	if data.WhitelistedUsers[plr.UserId] then
-		return data.WhitelistedUsers[plr.UserId].Rank
-	end
-	return 1
-end
-
-data.getPlayer = function(a)
-	if a == 'default' and data.localprio == 1 then
-		return true
-	end
-	if a == 'private' and data.localprio == 2 then
-		return true
-	end
-	return false
-end
-
-data.getPriority = function()
-	if data.localprio >= 1 and data.localprio == 2 then
-		return 'Private'
-	end
-	if data.localprio >= 1 and data.localprio == 3 then
-		return 'Host'
-	end
-	return nil
-end
-
-data.getWhitelist = function(plr)
-	local rank = data.getRank(plr)
-	if rank >= data.localprio then
-		return true
-	end
-	return false
-end
-
-data.getCurrentRank = function()
-	if data.WhitelistedUsers[lplr.UserId] then
-		data.localprio = data.WhitelistedUsers[lplr.UserId].Rank
-	end
-end
-
-return data
+return game.HttpService:JSONEncode(data)
