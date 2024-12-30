@@ -35,12 +35,38 @@ local function konstant_disassemble(scriptPath: Script | ModuleScript | LocalScr
 	return call("/konstant/disassemble", scriptPath)
 end
 
-unc.require = require and not string.lower(identifyexecutor()):find('solara') or function(module)
-	if module:IsA('ModuleScript') then
-		local source = konstant_decompile(module)
-		return loadstring(source)()
-	elseif module:IsA('LocalScript') or module:IsA('Script') then
-		warn('[Self-UNC]: attempt to require a localscript or script, Require support only ModuleScript.')
+unc.require = function(module)
+	if getgenv().require and string.lower(identifyexecutor()):find('solara') then
+		if module:IsA('ModuleScript') then
+			local source = konstant_decompile(module)
+			return loadstring(source)()
+		elseif module:IsA('LocalScript') or module:IsA('Script') then
+			assert(not print, 'Attempted to call require with invalid argument(s).')
+		end
+	else
+		return require(module)
+	end
+end
+
+unc.loadfile = function(file)
+	if not loadfile then
+		local suc, res = pcall(function()
+			return readfile(file)
+		end)
+		if suc then return loadstring(res) end
+	else
+		return loadfile(file)()
+	end
+end
+
+unc.isfile = function(file)
+	if not isfile then
+		local suc, res = pcall(function()
+			return readfile(file)
+		end)
+		return suc
+	else
+		return isfile(file)
 	end
 end
 
