@@ -70,4 +70,6 @@ unc.isfile = function(file)
 	end
 end
 
+print('[Self-UNC]: '..[[require can't write, it's readonly.]])
+
 return unc
