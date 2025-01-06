@@ -1,24 +1,23 @@
-local cloneref = cloneref or function(...) return ... end
+local cloneref = cloneref or function(...): () return ... end
+local unc: table = {}
 
-local unc = {}
-assert(getscriptbytecode, "Exploit not supported.")
-local API: string = "http://api.plusgiant5.com"
-local last_call = 0
+local last_call: number = 0
 local function call(konstantType: string, scriptPath: Script | ModuleScript | LocalScript): string
+	assert(getscriptbytecode, 'Exploit not supported.')
 	local success: boolean, bytecode: string = pcall(getscriptbytecode, scriptPath)
 	if (not success) then
 		return `-- Failed to get script bytecode, error:\n\n--[[\n{bytecode}\n--]]`
 	end
-	local time_elapsed = os.clock() - last_call
+	local time_elapsed: number = os.clock() - last_call
 	if time_elapsed <= .5 then
 		task.wait(.5 - time_elapsed)
 	end
 	local httpResult = request({
-		Url = API .. konstantType,
+		Url = 'http://api.plusgiant5.com' .. konstantType,
 		Body = bytecode,
-		Method = "POST",
+		Method = 'POST',
 		Headers = {
-			["Content-Type"] = "text/plain"
+			['Content-Type'] = 'text/plain'
 		},
 	})
 	last_call = os.clock()
@@ -30,14 +29,14 @@ local function call(konstantType: string, scriptPath: Script | ModuleScript | Lo
 end
 
 local function konstant_decompile(scriptPath: Script | ModuleScript | LocalScript): string
-	return call("/konstant/decompile", scriptPath)
+	return call('/konstant/decompile', scriptPath)
 end
 
 local function konstant_disassemble(scriptPath: Script | ModuleScript | LocalScript): string
-	return call("/konstant/disassemble", scriptPath)
+	return call('/konstant/disassemble', scriptPath)
 end
 
-unc.require = function(module)
+unc.require = function(module: ModuleScript): any
 	if getgenv().require and string.lower(identifyexecutor()):find('solara') or not getgenv().require then
 		if module:IsA('ModuleScript') then
 			local source = decompile and decompile(module) or konstant_decompile(module)
@@ -50,9 +49,9 @@ unc.require = function(module)
 	end
 end
 
-unc.loadfile = function(file)
+unc.loadfile = function(file: path): ()
 	if not loadfile then
-		local suc, res = pcall(function()
+		local suc: boolean, res = pcall(function()
 			return readfile(file)
 		end)
 		if suc then return loadstring(res) end
@@ -61,7 +60,7 @@ unc.loadfile = function(file)
 	end
 end
 
-unc.isfile = function(file)
+unc.isfile = function(file: path): boolean
 	if not isfile then
 		local suc, res = pcall(function()
 			return readfile(file)
@@ -72,7 +71,7 @@ unc.isfile = function(file)
 	end
 end
 
-unc.request = function(args)
+unc.request = function(args: table): table
 	if not request then
 		if args['Method'] == 'GET' then
 			return {
@@ -92,6 +91,4 @@ unc.request = function(args)
 end
 
 print('[Self-UNC]: '..[[require can't write, it's readonly.]])
-print('[Self-UNC]: '..[[request only support for method "GET".]])
-
-return unc
+print('[Self-UNC]: '..[[request only support for method 'GET'.]])
