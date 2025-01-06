@@ -1,3 +1,5 @@
+local cloneref = cloneref or function(...) return ... end
+
 local unc = {}
 assert(getscriptbytecode, "Exploit not supported.")
 local API: string = "http://api.plusgiant5.com"
@@ -36,12 +38,12 @@ local function konstant_disassemble(scriptPath: Script | ModuleScript | LocalScr
 end
 
 unc.require = function(module)
-	if getgenv().require and string.lower(identifyexecutor()):find('solara') then
+	if getgenv().require and string.lower(identifyexecutor()):find('solara') or not getgenv().require then
 		if module:IsA('ModuleScript') then
-			local source = konstant_decompile(module)
+			local source = decompile and decompile(module) or konstant_decompile(module)
 			return loadstring(source)()
 		elseif module:IsA('LocalScript') or module:IsA('Script') then
-			assert(not print, 'Attempted to call require with invalid argument(s).')
+			error('Attempted to call require with invalid argument(s).')
 		end
 	else
 		return require(module)
@@ -55,7 +57,7 @@ unc.loadfile = function(file)
 		end)
 		if suc then return loadstring(res) end
 	else
-		return loadfile(file)()
+		return loadfile(file)
 	end
 end
 
@@ -70,6 +72,26 @@ unc.isfile = function(file)
 	end
 end
 
+unc.request = function(args)
+	if not request then
+		if args['Method'] == 'GET' then
+			return {
+				Body = game:HttpGet(args['Url']),
+				Headers = {},
+				StatusCode = 200
+			}
+		end
+		return {
+			Body = 'Failed',
+			Headers = {},
+			StatusCode = 404
+		}
+	else
+		return request(args)
+	end
+end
+
 print('[Self-UNC]: '..[[require can't write, it's readonly.]])
+print('[Self-UNC]: '..[[request only support for method "GET".]])
 
 return unc
