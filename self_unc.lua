@@ -1,8 +1,8 @@
 local cloneref = cloneref or function(...): () return ... end
 local unc: table = {}
 
-local httpService = cloneref(game:GetService('HttpService'))
-local inputService = cloneref(game:GetService('UserInputService'))
+local httpService: service = cloneref(game:GetService('HttpService'))
+local inputService: service = cloneref(game:GetService('UserInputService'))
 
 local last_call: number = 0
 local function call(konstantType: string, scriptPath: Script | ModuleScript | LocalScript): string
@@ -47,9 +47,8 @@ unc.require = function(module: ModuleScript): any
 		elseif module:IsA('LocalScript') or module:IsA('Script') then
 			error('Attempted to call require with invalid argument(s).')
 		end
-	else
-		return require(module)
 	end
+	return require(module)
 end
 
 unc.loadfile = function(file: path): ()
@@ -58,9 +57,8 @@ unc.loadfile = function(file: path): ()
 			return readfile(file)
 		end)
 		if suc then return loadstring(res) end
-	else
-		return loadfile(file)
 	end
+	return loadfile(file)
 end
 
 unc.isfile = function(file: path): boolean
@@ -69,9 +67,8 @@ unc.isfile = function(file: path): boolean
 			return readfile(file)
 		end)
 		return suc
-	else
-		return isfile(file)
 	end
+	return isfile(file)
 end
 
 unc.request = function(args: table): table
@@ -92,9 +89,8 @@ unc.request = function(args: table): table
 			},
 			StatusCode = 404
 		}
-	else
-		return request(args)
 	end
+	return request(args)
 end
 
 unc.getcustomasset = function(bruh: path): string
@@ -105,9 +101,8 @@ unc.getcustomasset = function(bruh: path): string
 			end
 		end)
 		if success then return response end
-	else
-		return getcustomasset(bruh)
 	end
+	return getcustomasset(bruh)
 end
 
 print('[Self-UNC]: require can\'t write, it\'s readonly.')
