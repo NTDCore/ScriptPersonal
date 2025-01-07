@@ -1,6 +1,9 @@
 local cloneref = cloneref or function(...): () return ... end
 local unc: table = {}
 
+local httpService = cloneref(game:GetService('HttpService'))
+local inputService = cloneref(game:GetService('UserInputService'))
+
 local last_call: number = 0
 local function call(konstantType: string, scriptPath: Script | ModuleScript | LocalScript): string
 	assert(getscriptbytecode, 'Exploit not supported.')
@@ -77,7 +80,7 @@ unc.request = function(args: table): table
 			return {
 				Body = game:HttpGet(args['Url']),
 				Headers = {
-					[identifyexecutor()..'-Fingerprint'] = game:GetService('HttpService'):GenerateGUID(true)
+					[identifyexecutor()..'-Fingerprint'] = httpService:GenerateGUID(true)
 				},
 				StatusCode = 200
 			}
@@ -85,7 +88,7 @@ unc.request = function(args: table): table
 		return {
 			Body = 'Failed',
 			Headers = {
-				[identifyexecutor()..'-Fingerprint'] = game:GetService('HttpService'):GenerateGUID(true)
+				[identifyexecutor()..'-Fingerprint'] = httpService:GenerateGUID(true)
 			},
 			StatusCode = 404
 		}
@@ -95,7 +98,7 @@ unc.request = function(args: table): table
 end
 
 unc.getcustomasset = function(bruh: path): string
-	if not getcustomasset and not game:GetService('UserInputService').TouchEnabled then
+	if not getcustomasset and not inputService.TouchEnabled then
 		local success: boolean, response = pcall(function()
 			if unc.isfile(bruh) then
 				return 'rbxasset://'..bruh
