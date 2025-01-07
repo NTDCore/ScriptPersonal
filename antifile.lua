@@ -1,8 +1,11 @@
 -- Working in Progress
-local loadfilefunc = loadfile or function(file)
-	return loadstring(readfile(file))()
+local loadFile = loadfile or function(file: path): ()
+	local suc: boolean, res = pcall(function()
+		return readfile(file)
+	end)
+	if suc then return loadstring(res) end
 end
-local hookfuncs = hookfunc or hookfunction -- hookfunc is allias from krampus lol
+local hookfuncs = hookfunc or hookfunction or function() end -- hookfunc is allias from krampus lol
 local oldreadfile
 local olddelfile
 local olddelfolder
