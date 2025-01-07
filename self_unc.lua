@@ -76,13 +76,17 @@ unc.request = function(args: table): table
 		if args['Method'] == 'GET' then
 			return {
 				Body = game:HttpGet(args['Url']),
-				Headers = {},
+				Headers = {
+					[identifyexecutor()..'-Fingerprint'] = game:GetService('HttpService'):GenerateGUID(true)
+				},
 				StatusCode = 200
 			}
 		end
 		return {
 			Body = 'Failed',
-			Headers = {},
+			Headers = {
+				[identifyexecutor()..'-Fingerprint'] = game:GetService('HttpService'):GenerateGUID(true)
+			},
 			StatusCode = 404
 		}
 	else
@@ -90,5 +94,20 @@ unc.request = function(args: table): table
 	end
 end
 
-print('[Self-UNC]: '..[[require can't write, it's readonly.]])
-print('[Self-UNC]: '..[[request only support for method 'GET'.]])
+unc.getcustomasset = function(bruh: path): string
+	if not getcustomasset and not game:GetService('UserInputService').TouchEnabled then
+		local success: boolean, response = pcall(function()
+			if unc.isfile(bruh) then
+				return 'rbxasset://'..bruh
+			end
+		end)
+		if success then return response end
+	else
+		return getcustomasset(bruh)
+	end
+end
+
+print('[Self-UNC]: require can\'t write, it\'s readonly.')
+print('[Self-UNC]: request only support for method \'GET\'.')
+
+return unc
