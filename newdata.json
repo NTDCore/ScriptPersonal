@@ -1,0 +1,58 @@
+{
+    "announcements": {
+        "message": "",
+        "duration": 1,
+        "targets": "Roblox,Hi"
+    },
+    "customtags": [],
+    "lpn": "default",
+    "prios": {
+        "private": 2,
+        "default": 1,
+        "host": 3
+    },
+    "checkMessage": "hi me uzin efpee\"ee\" client",
+    "localprio": 1,
+    "WhitelistedUsers": {
+        "529431696": {
+            "TagText": "Fizz, my beloved â¤ï¸",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "548164386": {
+            "TagText": "Content Creator",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "2012715343": {
+            "TagText": "Script Developer",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "2984841826": {
+            "TagText": "Mikex's child",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "3054176102": {
+            "TagText": "Content Creator",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "7194695315": {
+            "TagText": "Script Developer",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "7326750145": {
+            "TagText": "Script Developer",
+            "TagColor": null,
+            "Rank": 3
+        },
+        "4520166929": {
+            "TagText": "Script Developer",
+            "TagColor": null,
+            "Rank": 3
+        }
+    }
+}
