@@ -15,43 +15,75 @@
 	"localprio": 1,
 	"WhitelistedUsers": {
 		"529431696": {
-			"TagText": "Fizz, my beloved â¤ï¸",
-			"TagColor": null,
+			"TagText": "Fizz, my beloved ❤️❤️",
+			"TagColor": {
+				"r": 255,
+				"g": 0,
+				"b": 255
+			},
 			"Rank": 3
 		},
 		"548164386": {
 			"TagText": "Content Creator",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 255,
+				"b": 0
+			},
 			"Rank": 3
 		},
 		"2012715343": {
 			"TagText": "Script Developer",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 95,
+				"b": 95
+			},
 			"Rank": 3
 		},
 		"2984841826": {
 			"TagText": "Mikex's child",
-			"TagColor": null,
+			"TagColor": {
+				"r": 0,
+				"g": 255,
+				"b": 0
+			},
 			"Rank": 3
 		},
 		"3054176102": {
 			"TagText": "Content Creator",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 255,
+				"b": 0
+			},
 			"Rank": 3
 		},
 		"7194695315": {
 			"TagText": "Script Developer",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 95,
+				"b": 95
+			},
 			"Rank": 3
 		},
 		"7326750145": {
 			"TagText": "Script Developer",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 95,
+				"b": 95
+			},
 			"Rank": 3
 		},
 		"4520166929": {
 			"TagText": "Script Developer",
-			"TagColor": null,
+			"TagColor": {
+				"r": 255,
+				"g": 95,
+				"b": 95
+			},
 			"Rank": 3
 		}
 	}
