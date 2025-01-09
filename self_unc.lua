@@ -39,7 +39,7 @@ local function konstant_disassemble(scriptPath: Script | ModuleScript | LocalScr
 	return call('/konstant/disassemble', scriptPath)
 end
 
-unc.require = function(module: ModuleScript): any
+unc.require = function(module: ModuleScript): idfk
 	if getgenv().require and string.lower(identifyexecutor()):find('solara') or not getgenv().require then
 		if module:IsA('ModuleScript') then
 			local source = decompile and decompile(module) or konstant_decompile(module)
