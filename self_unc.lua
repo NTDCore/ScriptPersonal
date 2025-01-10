@@ -42,8 +42,17 @@ end
 unc.require = function(module: ModuleScript): idfk
 	if getgenv().require and string.lower(identifyexecutor()):find('solara') or not getgenv().require then
 		if module:IsA('ModuleScript') then
-			local source = decompile and decompile(module) or konstant_decompile(module)
-			return loadstring(source)()
+			local suc: boolean, res: string = pcall(function()
+				return decompile and decompile(module) or konstant_decompile(module)
+			end)
+			if suc then
+				return loadstring(res)()
+			elseif not suc and not decompile then
+				error('Konstant decompiler downed ig')
+			else
+				error(res)
+			end
+		end
 		elseif module:IsA('LocalScript') or module:IsA('Script') then
 			error('Attempted to call require with invalid argument(s).')
 		end
@@ -53,7 +62,7 @@ end
 
 unc.loadfile = function(file: path): ()
 	if not loadfile then
-		local suc: boolean, res = pcall(function()
+		local suc: boolean, res: string = pcall(function()
 			return readfile(file)
 		end)
 		if suc then return loadstring(res) end
@@ -63,7 +72,7 @@ end
 
 unc.isfile = function(file: path): boolean
 	if not isfile then
-		local suc, res = pcall(function()
+		local suc: boolean, res: string = pcall(function()
 			return readfile(file)
 		end)
 		return suc
@@ -95,7 +104,7 @@ end
 
 unc.getcustomasset = function(bruh: path): string
 	if not getcustomasset and not inputService.TouchEnabled then
-		local success: boolean, response = pcall(function()
+		local success: boolean, response: string = pcall(function()
 			if unc.isfile(bruh) then
 				return 'rbxasset://'..bruh
 			end
