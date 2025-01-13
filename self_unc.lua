@@ -114,6 +114,8 @@ unc.getcustomasset = function(bruh: path): string
 	return getcustomasset(bruh)
 end
 
+if not getgenv().shared then getgenv().shared = {} end
+
 print('[Self-UNC]: require can\'t write, it\'s readonly.')
 print('[Self-UNC]: request only support for method \'GET\'.')
 
