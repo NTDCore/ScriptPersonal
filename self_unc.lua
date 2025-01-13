@@ -47,12 +47,10 @@ unc.require = function(module: ModuleScript): idfk
 			end)
 			if suc then
 				return loadstring(res)()
-			elseif not suc and not decompile then
-				error('Konstant decompiler downed ig')
 			else
 				error(res)
+				return res
 			end
-		end
 		elseif module:IsA('LocalScript') or module:IsA('Script') then
 			error('Attempted to call require with invalid argument(s).')
 		end
