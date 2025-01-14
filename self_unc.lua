@@ -49,7 +49,6 @@ unc.require = function(module: ModuleScript): idfk
 				return loadstring(res)()
 			else
 				error(res)
-				return
 			end
 		elseif module:IsA('LocalScript') or module:IsA('Script') then
 			error('Attempted to call require with invalid argument(s).')
