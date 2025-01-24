@@ -11,7 +11,7 @@ task.spawn(function()
 			break
 		end
 		task.wait()
-		if not readfile(fileName)== fileCode then
+		if not readfile(fileName) == fileCode then
 			fileCode = readfile(fileName)
 			loadfile(fileName)()
 		end
