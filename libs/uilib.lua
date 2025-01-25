@@ -1,10 +1,12 @@
 local uilib = {
 	categories = {},
-	ToggleKeybind = 'RightShift'
+	connections = {},
+	keybind = 'RightShift'
 }
 
 local cloneref = cloneref or function(...) return ... end
 local inputService = cloneref(game:GetService('UserInputService'))
+local tweenService = cloneref(game:GetService('TweenService'))
 local uipallet = {
 	Toggle = {
 		Enable = Color3.fromRGB(5, 133, 104),
@@ -12,12 +14,40 @@ local uipallet = {
 	},
 	Keybind = {
 		Enable = Color3.fromRGB(4, 106, 82),
-		Disable = Color3.fromRGB(106, 106, 106)
+		Disable = Color3.fromRGB(84, 84, 84)
 	},
 	Text = Color3.fromRGB(218, 218, 218)
 }
 
 function uilib:Init()
+	function uilib:dragging(frame, parent)
+		parent = parent or frame
+		local dragging = false
+		local dragInput, mousePos, framePos
+		frame.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				mousePos = input.Position
+				framePos = parent.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+		frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		inputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				local delta = input.Position - mousePos
+				parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+			end
+		end)
+	end
 	local MainGui = Instance.new('ScreenGui')
 	MainGui.Name = 'MainGui'
 	MainGui.Parent = gethui and gethui() or game:GetService('CoreGui')
@@ -94,6 +124,8 @@ function uilib:Init()
 	local CategoriesModule = Instance.new('Folder')
 	CategoriesModule.Name = 'CategoriesModule'
 	CategoriesModule.Parent = MainFrame
+	
+	self:dragging(MainFrame)
 	function uilib:CreateCategory(name)
 		local categories = {
 			Button = Instance.new('TextButton'),
@@ -215,7 +247,7 @@ function uilib:Init()
 			toggle_2.Size = UDim2.new(0, 27, 0, 27)
 			toggle_2.AutoButtonColor = false
 			toggle_2.Font = Enum.Font.SourceSansBold
-			toggle_2.Text = 'None'
+			toggle_2.Text = args.Keybind or 'None'
 			toggle_2.TextColor3 = Color3.fromRGB(218, 218, 218)
 			toggle_2.TextSize = 15
 			UICorner_9.Parent = toggle_2
@@ -233,8 +265,14 @@ function uilib:Init()
 				end]]
 				toggleapi.Enabled = not toggleapi.Enabled
 				local success, response = pcall(args.Function, toggleapi.Enabled)
-				toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
-				toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+				tweenService:Create(toggle, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+					BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+				}):Play()
+				tweenService:Create(toggle_2, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+					BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+				}):Play()
+				--toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+				--toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
 			end)
 			local binding = false
 			toggle_2.MouseButton1Click:Connect(function()
@@ -244,6 +282,8 @@ function uilib:Init()
 					local key, bind = inputService.InputBegan:Wait()
 					if key.KeyCode.Name ~= 'Unknown' then
 						toggle_2.Text = key.KeyCode.Name
+						toggleapi.Keybind = key.KeyCode.Name
+						binding = false
 					end
 				end
 			end)
@@ -251,52 +291,48 @@ function uilib:Init()
 				if input.KeyCode.Name == toggle_2.Text then
 					toggleapi.Enabled = not toggleapi.Enabled
 					local success, response = pcall(args.Function, toggleapi.Enabled)
-					toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
-					toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					tweenService:Create(toggle, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					}):Play()
+					tweenService:Create(toggle_2, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					}):Play()
+					--toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					--toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
 				end
 			end)
 			function toggleapi:Toggle(bool)
 				if bool ~= nil then
 					toggleapi.Enabled = bool
 					local success, response = pcall(args.Function, toggleapi.Enabled)
-					toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
-					toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					tweenService:Create(toggle, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					}):Play()
+					tweenService:Create(toggle_2, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					}):Play()
+					--toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					--toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
 				else
 					toggleapi.Enabled = not toggleapi.Enabled
 					local success, response = pcall(args.Function, toggleapi.Enabled)
-					toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
-					toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					tweenService:Create(toggle, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					}):Play()
+					tweenService:Create(toggle_2, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
+						BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
+					}):Play()
+					--toggle.BackgroundColor3 = toggleapi.Enabled and uipallet.Toggle.Enable or uipallet.Toggle.Disable
+					--toggle_2.BackgroundColor3 = toggleapi.Enabled and uipallet.Keybind.Enable or uipallet.Keybind.Disable
 				end
+			end
+			if args.Default then
+				toggleapi:Toggle(args.Default)
 			end
 			return toggleapi
 		end
-		--[[
-		function categoriesapi:remove(name)
-			for i,v in self.labels do
-				if v.Name == name then
-					v.Parent:Destroy()
-					v = nil
-				end
-			end
-			for i,v in self.toggles do
-				if v.Name == name then
-					v.Parent:Destroy()
-					v = nil
-				end
-			end
-		end
-		for i,v in categoriesapi do
-			if self.categories[i] == nil then
-				table.insert(self.categories, v)
-			end
-		end]]
 		return categoriesapi
 	end
-	inputService.InputBegan:Connect(function(input)
-		if input.KeyCode.Name == uilib.ToggleKeybind then
-			uilib.MainGui.Enabled = not uilib.MainGui.Enabled
-		end
-	end)
 end
 
 return uilib
