@@ -343,7 +343,7 @@ function uilib:Init()
 		local success, response = pcall(function()
 			for i,v in self.signals.selfdestruct do
 				local success, response = pcall(v)
-				if success then return end
+				if success then return response end
 				if not success then error(response) end
 			end
 		end)
