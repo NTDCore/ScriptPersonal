@@ -1,7 +1,10 @@
 local uilib = {
 	categories = {},
 	connections = {},
-	keybind = 'RightShift'
+	keybind = 'RightShift',
+	signals = {
+		selfdestruct = {}
+	}
 }
 
 local cloneref = cloneref or function(...) return ... end
@@ -217,7 +220,7 @@ function uilib:Init()
 			return labelapi
 		end
 		function categoriesapi:CreateToggle(args)
-			local toggleapi = {Enabled = false, Keybind = 'None'}
+			local toggleapi = {Enabled = false, Keybind = 'None', Connections = {}, Module = args.Name}
 			local toggle = Instance.new('TextButton')
 			toggle.Name = 'toggle'
 			toggle.Parent = categories.Frame
@@ -332,6 +335,19 @@ function uilib:Init()
 			return toggleapi
 		end
 		return categoriesapi
+	end
+	function uilib:OnSelfdestruct(func)
+		table.insert(self.signals.selfdestruct, func)
+	end
+	function uilib:selfdestruct()
+		local success, response = pcall(function()
+			for i,v in self.signals.selfdestruct do
+				local success, response = pcall(v)
+				if success then return end
+				if not success then error(response) end
+			end
+		end)
+		self.MainGui:Destroy()
 	end
 end
 

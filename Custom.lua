@@ -27,11 +27,11 @@ v_.getClientVersion = function()
 end
 v_.getServerVersion = function()
 	local v_getVersion = getservice(game, 'HttpService'):JSONDecode(v_request({Url = 'https://clientsettings.roblox.com/v2/client-version/WindowsPlayer/channel/live', Method = 'GET'}).Body);
-	return v_getVersion.clientVersionUpload;
+	return v_getVersion.version;
 end
 v_.isOutdate = function()
-	local v_client = string.gsub(version(), 'version-', '');
-	local v_server = string.gsub(v_.getServerVersion(), 'version-', '');
+	local v_client = v_.getClientVersion();
+	local v_server = v_.getServerVersion();
 	if not string.match(v_client, v_server) then
 		return true;
 	end
