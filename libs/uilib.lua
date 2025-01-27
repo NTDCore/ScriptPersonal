@@ -127,7 +127,7 @@ function uilib:Init(locate)
 	local CategoriesModule = Instance.new('Folder')
 	CategoriesModule.Name = 'CategoriesModule'
 	CategoriesModule.Parent = MainFrame
-	
+
 	self:dragging(MainFrame)
 	function uilib:CreateCategory(name)
 		local categories = {
