@@ -22,7 +22,7 @@ local uipallet = {
 	Text = Color3.fromRGB(218, 218, 218)
 }
 
-function uilib:Init()
+function uilib:Init(locate)
 	function uilib:dragging(frame, parent)
 		parent = parent or frame
 		local dragging = false
@@ -53,7 +53,7 @@ function uilib:Init()
 	end
 	local MainGui = Instance.new('ScreenGui')
 	MainGui.Name = 'MainGui'
-	MainGui.Parent = gethui and gethui() or game:GetService('CoreGui')
+	MainGui.Parent = locate or gethui and gethui() or game:GetService('CoreGui')
 	MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	uilib.MainGui = MainGui
 	local MainFrame = Instance.new('Frame')
