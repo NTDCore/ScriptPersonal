@@ -1,6 +1,7 @@
 local uilib = {
 	categories = {},
 	connections = {},
+	injected = true,
 	keybind = 'RightShift',
 	signals = {
 		selfdestruct = {}
@@ -10,6 +11,18 @@ local uilib = {
 local cloneref = cloneref or function(...) return ... end
 local inputService = cloneref(game:GetService('UserInputService'))
 local tweenService = cloneref(game:GetService('TweenService'))
+local assetfunction = getcustomasset or function(asset)
+	return 'rbxasset://'..asset
+end
+
+local randomString = function(length)
+	local list = {}
+	for i = 1, length or math.random(10, 25) do
+		list[i] = string.char(math.random(48, 122))
+	end
+	return table.concat(list)
+end
+
 local uipallet = {
 	Toggle = {
 		Enable = Color3.fromRGB(5, 133, 104),
@@ -52,7 +65,7 @@ function uilib:Init(locate)
 		end)
 	end
 	local MainGui = Instance.new('ScreenGui')
-	MainGui.Name = 'MainGui'
+	MainGui.Name = randomString(math.random(10, 100))
 	MainGui.Parent = locate or gethui and gethui() or game:GetService('CoreGui')
 	MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	uilib.MainGui = MainGui
@@ -220,7 +233,7 @@ function uilib:Init(locate)
 			return labelapi
 		end
 		function categoriesapi:CreateToggle(args)
-			local toggleapi = {Enabled = false, Keybind = 'None', Connections = {}, Module = args.Name}
+			local toggleapi = {Enabled = false, Keybind = 'None', Connections = {}, Module = args.Name, Children}
 			local toggle = Instance.new('TextButton')
 			toggle.Name = 'toggle'
 			toggle.Parent = categories.Frame
@@ -254,6 +267,7 @@ function uilib:Init(locate)
 			toggle_2.TextColor3 = Color3.fromRGB(218, 218, 218)
 			toggle_2.TextSize = 15
 			UICorner_9.Parent = toggle_2
+			toggleapi.Children = toggle
 			toggle.MouseButton1Click:Connect(function()
 				--[[if not toggleapi.Enabled then
 					toggleapi.Enabled = not toggleapi.Enabled
@@ -347,6 +361,9 @@ function uilib:Init(locate)
 				if not success then error(response) end
 			end
 		end)
+		if self.injected then
+			self.injected = false
+		end
 		self.MainGui:Destroy()
 	end
 end
