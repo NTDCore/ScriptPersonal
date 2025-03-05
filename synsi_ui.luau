@@ -2,8 +2,7 @@ if identifyexecutor():find('Xeno') then
 	getgenv().cloneref = nil
 end
 local cloneref = cloneref or function(...) return ... end
-local EXECUTOR_NAME = {identifyexecutor()}[1]
-local gethui = gethui or function() return cloneref(game:GetService('CoreGui'))
+local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
 local uilib = loadstring(game:HttpGet('https://raw.githubusercontent.com/NTDCore/ScriptPersonal/main/libs/test.luau', true), 'test')()
 local synsaveinstance = loadstring(game:HttpGet('https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau', true), 'saveinstance')()
 uilib:Init('Synapse X Save Instance')
