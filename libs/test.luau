@@ -52,6 +52,9 @@ function lib:Init(n)
 	local adasd = Instance.new('UIScale')
 	adasd.Name = randomString()
 	adasd.Parent = Screen
+	function lib:scale(val)
+		adasd.Scale = tonumber(val)
+	end
 	local qwdqww = Instance.new('Frame')
 	qwdqww.Name = randomString()
 	qwdqww.Parent = Screen

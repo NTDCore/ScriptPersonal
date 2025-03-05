@@ -8,7 +8,61 @@ local uilib = loadstring(game:HttpGet('https://raw.githubusercontent.com/NTDCore
 local synsaveinstance = loadstring(game:HttpGet('https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau', true), 'saveinstance')()
 uilib:Init('Synapse X Save Instance')
 uilib:createbutton('Save Instance', function()
-	synsaveinstance()
+	synsaveinstance({
+		SaveBytecode = false,
+		ShowStatus = true,
+		IgnoreDefaultPlayerScripts = true,
+		NilInstancesFixes = {
+			BaseWrap = nil,
+			Animator = nil,
+			Attachment = nil,
+			PackageLink = nil,
+			AdPortal = nil
+		},
+		IgnoreList = { 'CoreGui', 'CorePackages' },
+		__DEBUG_MODE = false,
+		DecompileJobless = false,
+		IgnoreNotArchivable = true,
+		RemovePlayerCharacters = true,
+		Object = false,
+		DecompileIgnore = { 'TextChatService', nil, nil },
+		IgnoreSpecialProperties = true,
+		TreatUnionsAsParts = true,
+		IsModel = false,
+		NilInstances = false,
+		ExtraInstances = { },
+		noscripts = false,
+		ReadMe = true,
+		scriptcache = true,
+		OptionsAliases = {
+			IgnoreArchivable = 'IgnoreNotArchivable',
+			DecompileTimeout = 'timeout',
+			SaveNonCreatable = 'SaveNotCreatable',
+			SavePlayers = 'IsolatePlayers',
+			FileName = 'FilePath',
+			IgnoreDefaultProps = 'IgnoreDefaultProperties'
+		},
+		AlternativeWritefile = true,
+		mode = 'optimized',
+		SaveCacheInterval = 56320,
+		SharedStringOverwrite = false,
+		IsolatePlayers = false,
+		IgnoreSharedStrings = true,
+		timeout = -1,
+		NotCreatableFixes = { '', 'AnimationTrack', 'Player', 'PlayerGui', 'PlayerScripts', 'PlayerMouse', 'ScreenshotHud', 'StudioData', 'TextSource', 'TouchTransmitter' },
+		Anonymous = false,
+		IgnoreDefaultProperties = true,
+		IsolateStarterPlayer = false,
+		IgnorePropertiesOfNotScriptsOnScriptsMode = false,
+		IsolateLocalPlayerCharacter = false,
+		SaveNotCreatable = false,
+		IsolateLocalPlayer = false,
+		FilePath = false,
+		AntiIdle = true,
+		ShutdownWhenDone = false,
+		SafeMode = false,
+		IgnoreProperties = {}
+	})
 end)
 --[[
 local Options = {
@@ -45,7 +99,7 @@ local Options = {
 	IgnoreNotArchivable = true,
 	IgnorePropertiesOfNotScriptsOnScriptsMode = false,
 	IgnoreSpecialProperties = ArrayToDict({ 'Fluxus', 'Delta', 'Solara' })[EXECUTOR_NAME] or false, -- ! Please submit more Executors that crash on gethiddenproperty (with this disabled basically)
-	IsolateLocalPlayer = false, --  #service.StarterGui:GetChildren() == 0
+	IsolateLocalPlayer = false, --	#service.StarterGui:GetChildren() == 0
 	IsolateLocalPlayerCharacter = false,
 	IsolatePlayers = false,
 	IsolateStarterPlayer = false,
