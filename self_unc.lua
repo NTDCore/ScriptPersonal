@@ -67,6 +67,17 @@ unc.loadfile = function(file: path): ()
 	return loadfile(file)
 end
 
+unc.isreadonly = isreadonly or function(t: table): boolean
+	local randomval = math.random(100, 1000)
+	local a, b = pcall(function()
+		t[randomval] = true
+	end)
+	if a then
+		t[randomval] = nil
+	end
+	return not a
+end
+
 unc.isfile = function(file: path): boolean
 	if not isfile then
 		local suc: boolean, res: string = pcall(function()
