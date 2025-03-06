@@ -56,6 +56,7 @@ function lib:Init(n)
 		adasd.Scale = tonumber(val)
 	end
 	local qwdqww = Instance.new('Frame')
+	qwdqww.Active = true
 	qwdqww.Name = randomString()
 	qwdqww.Parent = Screen
 	qwdqww.AnchorPoint = Vector2.new(0.5, 0.5)
