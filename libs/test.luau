@@ -1,5 +1,10 @@
 -- https://luau.github.io/UniversalSynSaveInstance/api/SynSaveInstance
-local lib = {}
+local lib = {
+	assets = {
+		['personalscripts/assets/synapselogo.png'] = 'rbxassetid://78268396149727',
+		['personalscripts/assets/closeicon.png'] = 'rbxassetid://74598903903850'
+	}
+}
 if identifyexecutor():find('Xeno') then
 	getgenv().cloneref = nil
 end
@@ -7,6 +12,16 @@ local cloneref = cloneref or function(...) return ... end
 local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
 local inputService = cloneref(game:GetService('UserInputService'))
 local tweenService = cloneref(game:GetService('TweenService'))
+local getcustomasset = getcustomasset or function(picture)
+	return lib.assets[picture] or ''
+end
+local downloadasset = function(asset)
+	local subbed = string.gsub(asset, 'personalscripts/', '')
+	if not isfile(asset) then
+		writefile(asset, game:HttpGet('https://raw.githubusercontent.com/NTDCore/ScriptPersonal/main/'..subbed))
+	end
+	return getcustomasset(asset)
+end
 local randomString = function()
 	local randomlength = math.random(10,100)
 	local array = {}
