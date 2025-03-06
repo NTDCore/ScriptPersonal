@@ -143,6 +143,33 @@ function lib:Init(n)
 			return response
 		end)
 	end
+	function lib:createlabel(txt, hidden)
+		local label = {}
+		local but = Instance.new('TextLabel')
+		but.Name = randomString()
+		but.Parent = SDQWD
+		but.AnchorPoint = Vector2.new(0.5, 0.5)
+		but.BackgroundColor3 = Color3.fromRGB(0, 29, 70)
+		but.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		but.BorderSizePixel = 0
+		but.Position = UDim2.new(0.512, 0, 0.063, 0)
+		but.Size = UDim2.new(0, 261, 0, 34)
+		but.Font = Enum.Font.SourceSansBold
+		but.Text = txt or 'Label'
+		but.TextColor3 = Color3.fromRGB(185, 212, 255)
+		but.TextSize = 21
+		local qwd_3 = Instance.new('UICorner')
+		qwd_3.CornerRadius = UDim.new(0, 5)
+		qwd_3.Name = randomString()
+		qwd_3.Parent = but
+		function label:text(txt)
+			but.Text = tostring(txt) or but.Text
+		end
+		function label:visible(bool)
+			but.Visible = bool or not but.Visible
+		end
+		return label
+	end
 end
 
 return lib
