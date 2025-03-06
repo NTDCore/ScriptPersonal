@@ -6,6 +6,7 @@ local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) 
 local uilib = loadstring(game:HttpGet('https://raw.githubusercontent.com/NTDCore/ScriptPersonal/main/libs/test.luau', true), 'test')()
 local synsaveinstance = loadstring(game:HttpGet('https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau', true), 'saveinstance')()
 uilib:Init('Synapse X Save Instance')
+uilib:createlabel('Credit to phoriah')
 uilib:createbutton('Save Instance', function()
 	synsaveinstance({
 		SaveBytecode = false,

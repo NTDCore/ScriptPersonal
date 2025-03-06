@@ -79,6 +79,7 @@ function lib:Init(n)
 		adasd.Scale = tonumber(val)
 	end
 	local qwdqww = Instance.new('Frame')
+	qwdqww.ZIndex = 200
 	qwdqww.Active = true
 	qwdqww.Name = randomString()
 	qwdqww.Parent = Screen
