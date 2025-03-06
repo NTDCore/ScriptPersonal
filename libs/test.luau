@@ -2,7 +2,7 @@
 local lib = {
 	assets = {
 		['personalscripts/assets/synapselogo.png'] = 'rbxassetid://78268396149727',
-		['personalscripts/assets/closeicon.png'] = 'rbxassetid://74598903903850'
+		['personalscripts/assets/closeicon.png'] = 'rbxassetid://81055944487878'
 	}
 }
 if identifyexecutor():find('Xeno') then
@@ -12,6 +12,14 @@ local cloneref = cloneref or function(...) return ... end
 local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
 local inputService = cloneref(game:GetService('UserInputService'))
 local tweenService = cloneref(game:GetService('TweenService'))
+local colorpallet = {
+	default = {
+		text = Color3.fromRGB(185, 212, 255),
+		background1 = Color3.fromRGB(0, 11, 29),
+		background2 = Color3.fromRGB(0, 18, 44),
+		element = Color3.fromRGB(0, 29, 70)
+	}
+}
 local getcustomasset = getcustomasset or function(picture)
 	return lib.assets[picture] or ''
 end
@@ -123,6 +131,7 @@ function lib:Init(n)
 	SDQWD.Position = UDim2.new(0.5, 0, 0.512, 0)
 	SDQWD.Size = UDim2.new(0, 268, 0, 270)
 	SDQWD.CanvasSize = UDim2.new(0, 0, 1, 0)
+	SDQWD.ScrollBarImageColor3 = Color3.fromRGB(185, 212, 255)
 	SDQWD.ScrollBarThickness = 2
 	local ddd = Instance.new('UIListLayout')
 	ddd.Name = randomString()
@@ -130,6 +139,52 @@ function lib:Init(n)
 	ddd.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	ddd.SortOrder = Enum.SortOrder.LayoutOrder
 	ddd.Padding = UDim.new(0, 5)
+	local BMEHRSKJICVYJ = Instance.new('ImageButton', qwdqww)
+	BMEHRSKJICVYJ.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	BMEHRSKJICVYJ.ClipsDescendants = false
+	BMEHRSKJICVYJ.AnchorPoint = Vector2.new(0.5, 0.5)
+	BMEHRSKJICVYJ.Image = lib.assets['personalscripts/assets/closeicon.png']
+	BMEHRSKJICVYJ.BackgroundTransparency = 1
+	BMEHRSKJICVYJ.Position = UDim2.fromScale(0.931999981, 0.0579999983)
+	BMEHRSKJICVYJ.Name = randomString()
+	BMEHRSKJICVYJ.BackgroundColor3 = Color3.new(1, 1, 1)
+	BMEHRSKJICVYJ.BorderSizePixel = 0
+	BMEHRSKJICVYJ.Size = UDim2.fromOffset(24, 24)
+	BMEHRSKJICVYJ.MouseButton1Click:Connect(function()
+		qwdqww.Visible = false
+	end)
+	local XJZQTPXLQWJZAZMCTQU = Instance.new('ImageButton', Screen) 
+	XJZQTPXLQWJZAZMCTQU.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	XJZQTPXLQWJZAZMCTQU.AutoButtonColor = false
+	XJZQTPXLQWJZAZMCTQU.ScaleType = Enum.ScaleType.Fit
+	XJZQTPXLQWJZAZMCTQU.ClipsDescendants = false
+	XJZQTPXLQWJZAZMCTQU.AnchorPoint = Vector2.new(0.5, 0.5)
+	XJZQTPXLQWJZAZMCTQU.Image = lib.assets['personalscripts/assets/synapselogo.png']
+	XJZQTPXLQWJZAZMCTQU.Name = randomString()
+	XJZQTPXLQWJZAZMCTQU.Position = UDim2.fromScale(0.928, 0.498)
+	XJZQTPXLQWJZAZMCTQU.BackgroundColor3 = Color3.new(0, 0.113725, 0.27451)
+	XJZQTPXLQWJZAZMCTQU.BorderSizePixel = 0
+	XJZQTPXLQWJZAZMCTQU.Size = UDim2.fromOffset(35, 35)
+	XJZQTPXLQWJZAZMCTQU.MouseButton1Click:Connect(function()
+		qwdqww.Visible = not qwdqww.Visible
+	end)
+	lib:dragging(XJZQTPXLQWJZAZMCTQU)
+	Instance.new('UICorner', XJZQTPXLQWJZAZMCTQU).CornerRadius = UDim.new(10, 0)
+	local HWDYPXNKWRO = Instance.new('UIStroke', XJZQTPXLQWJZAZMCTQU) 
+	HWDYPXNKWRO.Color = Color3.fromRGB(0, 18, 44)
+	HWDYPXNKWRO.Thickness = 4.5
+	local ZIRODNXVBFGSNPOXWWXS = Instance.new('ImageLabel', qwdqww)
+	ZIRODNXVBFGSNPOXWWXS.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	ZIRODNXVBFGSNPOXWWXS.ClipsDescendants = false
+	ZIRODNXVBFGSNPOXWWXS.Name = randomString()
+	ZIRODNXVBFGSNPOXWWXS.AnchorPoint = Vector2.new(0.5, 0.5)
+	ZIRODNXVBFGSNPOXWWXS.Image = lib.assets['personalscripts/assets/synapselogo.png']
+	ZIRODNXVBFGSNPOXWWXS.BackgroundTransparency = 1
+	ZIRODNXVBFGSNPOXWWXS.Position = UDim2.fromScale(0.08, 0.068)
+	ZIRODNXVBFGSNPOXWWXS.BackgroundColor3 = Color3.new(1, 1, 1)
+	ZIRODNXVBFGSNPOXWWXS.Active = false
+	ZIRODNXVBFGSNPOXWWXS.BorderSizePixel = 0
+	ZIRODNXVBFGSNPOXWWXS.Size = UDim2.fromOffset(31, 30)
 	ddd:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
 		SDQWD.CanvasSize = UDim2.fromOffset(0, ddd.AbsoluteContentSize.Y)
 	end)
@@ -148,10 +203,10 @@ function lib:Init(n)
 		but.Text = text or 'Button'
 		but.TextColor3 = Color3.fromRGB(185, 212, 255)
 		but.TextSize = 21
-		local qwd_3 = Instance.new('UICorner')
-		qwd_3.CornerRadius = UDim.new(0, 5)
-		qwd_3.Name = randomString()
-		qwd_3.Parent = but
+		local corner = Instance.new('UICorner')
+		corner.CornerRadius = UDim.new(0, 5)
+		corner.Name = randomString()
+		corner.Parent = but
 		but.MouseButton1Click:Connect(function()
 			local success, response = pcall(func)
 			if not success then error(response) end
@@ -160,28 +215,28 @@ function lib:Init(n)
 	end
 	function lib:createlabel(txt, hidden)
 		local label = {}
-		local but = Instance.new('TextLabel')
-		but.Name = randomString()
-		but.Parent = SDQWD
-		but.AnchorPoint = Vector2.new(0.5, 0.5)
-		but.BackgroundColor3 = Color3.fromRGB(0, 29, 70)
-		but.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		but.BorderSizePixel = 0
-		but.Position = UDim2.new(0.512, 0, 0.063, 0)
-		but.Size = UDim2.new(0, 261, 0, 34)
-		but.Font = Enum.Font.SourceSansBold
-		but.Text = txt or 'Label'
-		but.TextColor3 = Color3.fromRGB(185, 212, 255)
-		but.TextSize = 21
-		local qwd_3 = Instance.new('UICorner')
-		qwd_3.CornerRadius = UDim.new(0, 5)
-		qwd_3.Name = randomString()
-		qwd_3.Parent = but
+		local labellol = Instance.new('TextLabel')
+		labellol.Name = randomString()
+		labellol.Parent = SDQWD
+		labellol.AnchorPoint = Vector2.new(0.5, 0.5)
+		labellol.BackgroundColor3 = Color3.fromRGB(0, 29, 70)
+		labellol.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		labellol.BorderSizePixel = 0
+		labellol.Position = UDim2.new(0.512, 0, 0.063, 0)
+		labellol.Size = UDim2.new(0, 261, 0, 34)
+		labellol.Font = Enum.Font.SourceSansBold
+		labellol.Text = txt or 'Label'
+		labellol.TextColor3 = Color3.fromRGB(185, 212, 255)
+		labellol.TextSize = 21
+		local labelcorner = Instance.new('UICorner')
+		labelcorner.CornerRadius = UDim.new(0, 5)
+		labelcorner.Name = randomString()
+		labelcorner.Parent = labellol
 		function label:text(txt)
-			but.Text = tostring(txt) or but.Text
+			labellol.Text = tostring(txt) or labellol.Text
 		end
 		function label:visible(bool)
-			but.Visible = bool or not but.Visible
+			labellol.Visible = bool or not labellol.Visible
 		end
 		return label
 	end
