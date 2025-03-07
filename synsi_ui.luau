@@ -3,11 +3,19 @@ if identifyexecutor():find('Xeno') then
 end
 local cloneref = cloneref or function(...) return ... end
 local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
+local players = cloneref(game:GetService('Players'))
+local lplr = players.LocalPlayer
 local uilib = loadstring(game:HttpGet('https://raw.githubusercontent.com/NTDCore/ScriptPersonal/main/libs/test.luau', true), 'test')()
 local synsaveinstance = loadstring(game:HttpGet('https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau', true), 'saveinstance')()
 uilib:Init('Synapse X Save Instance')
 uilib:createlabel('Credit to phoriah')
 uilib:createbutton('Save Instance', function()
+	for i,v in lplr.PlayerGui:GetChildren() do
+		if not cloneref(game:GetService('StarterGui'))[v.Name] then
+			local ok = v:Clone()
+			ok.Parent = cloneref(game:GetService('StarterGui'))
+		end
+	end
 	synsaveinstance({
 		SaveBytecode = false,
 		ShowStatus = true,
