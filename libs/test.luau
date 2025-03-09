@@ -66,10 +66,10 @@ function lib:dragging(frame, parent)
 		end
 	end)
 end
-function lib:Init(n)
+function lib:Init(n, p)
 	local Screen = Instance.new('ScreenGui')
 	Screen.Name = randomString()
-	Screen.Parent = gethui()
+	Screen.Parent = p or gethui()
 	Screen.ResetOnSpawn = false
 	Screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	local adasd = Instance.new('UIScale')
