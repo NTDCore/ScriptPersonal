@@ -1,5 +1,6 @@
 -- https://luau.github.io/UniversalSynSaveInstance/api/SynSaveInstance
 local lib = {
+	color = 'new',
 	assets = {
 		['personalscripts/assets/synapselogo.png'] = 'rbxassetid://78268396149727',
 		['personalscripts/assets/closeicon.png'] = 'rbxassetid://81055944487878'
@@ -13,7 +14,13 @@ local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) 
 local inputService = cloneref(game:GetService('UserInputService'))
 local tweenService = cloneref(game:GetService('TweenService'))
 local colorpallet = {
-	default = {
+	new = {
+		text = Color3.fromRGB(185, 212, 255),
+		background1 = Color3.fromRGB(0, 11, 29),
+		background2 = Color3.fromRGB(0, 18, 44),
+		element = Color3.fromRGB(0, 29, 70)
+	},
+	old = {
 		text = Color3.fromRGB(185, 212, 255),
 		background1 = Color3.fromRGB(0, 11, 29),
 		background2 = Color3.fromRGB(0, 18, 44),
@@ -84,7 +91,7 @@ function lib:Init(n, p)
 	qwdqww.Name = randomString()
 	qwdqww.Parent = Screen
 	qwdqww.AnchorPoint = Vector2.new(0.5, 0.5)
-	qwdqww.BackgroundColor3 = Color3.fromRGB(0, 11, 29)
+	qwdqww.BackgroundColor3 = colorpallet[self.color].background1
 	qwdqww.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	qwdqww.BorderSizePixel = 0
 	qwdqww.Position = UDim2.new(0.499, 0, 0.499, 0)
@@ -106,12 +113,12 @@ function lib:Init(n, p)
 	lo.Position = UDim2.new(0.5, 0, 0.059, 0)
 	lo.Size = UDim2.new(0, 282, 0, 38)
 	lo.Font = Enum.Font.SourceSansBold
-	lo.TextColor3 = Color3.fromRGB(185, 212, 255)
+	lo.TextColor3 = Ccolorpallet[self.color].text
 	lo.TextSize = 21
 	lo.TextWrapped = true
 	local qdddd = Instance.new('Frame')
 	qdddd.Parent = qwdqww
-	qdddd.BackgroundColor3 = Color3.fromRGB(0, 18, 44)
+	qdddd.BackgroundColor3 = colorpallet[self.color].background2
 	qdddd.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	qdddd.BorderSizePixel = 0
 	qdddd.Position = UDim2.new(0.025, 0, 0.118, 0)
@@ -125,14 +132,14 @@ function lib:Init(n, p)
 	SDQWD.Parent = qdddd
 	SDQWD.Active = true
 	SDQWD.AnchorPoint = Vector2.new(0.5, 0.5)
-	SDQWD.BackgroundColor3 = Color3.fromRGB(0, 18, 44)
+	SDQWD.BackgroundColor3 = colorpallet[self.color].background2
 	SDQWD.BackgroundTransparency = 1
 	SDQWD.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	SDQWD.BorderSizePixel = 0
 	SDQWD.Position = UDim2.new(0.5, 0, 0.512, 0)
 	SDQWD.Size = UDim2.new(0, 268, 0, 270)
 	SDQWD.CanvasSize = UDim2.new(0, 0, 1, 0)
-	SDQWD.ScrollBarImageColor3 = Color3.fromRGB(185, 212, 255)
+	SDQWD.ScrollBarImageColor3 = Ccolorpallet[self.color].text
 	SDQWD.ScrollBarThickness = 2
 	local ddd = Instance.new('UIListLayout')
 	ddd.Name = randomString()
@@ -141,7 +148,7 @@ function lib:Init(n, p)
 	ddd.SortOrder = Enum.SortOrder.LayoutOrder
 	ddd.Padding = UDim.new(0, 5)
 	local BMEHRSKJICVYJ = Instance.new('ImageButton', qwdqww)
-	BMEHRSKJICVYJ.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	BMEHRSKJICVYJ.ImageColor3 = Ccolorpallet[self.color].text
 	BMEHRSKJICVYJ.ClipsDescendants = false
 	BMEHRSKJICVYJ.AnchorPoint = Vector2.new(0.5, 0.5)
 	BMEHRSKJICVYJ.Image = lib.assets['personalscripts/assets/closeicon.png']
@@ -155,7 +162,7 @@ function lib:Init(n, p)
 		qwdqww.Visible = false
 	end)
 	local XJZQTPXLQWJZAZMCTQU = Instance.new('ImageButton', Screen) 
-	XJZQTPXLQWJZAZMCTQU.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	XJZQTPXLQWJZAZMCTQU.ImageColor3 = Ccolorpallet[self.color].text
 	XJZQTPXLQWJZAZMCTQU.AutoButtonColor = false
 	XJZQTPXLQWJZAZMCTQU.ScaleType = Enum.ScaleType.Fit
 	XJZQTPXLQWJZAZMCTQU.ClipsDescendants = false
@@ -172,10 +179,10 @@ function lib:Init(n, p)
 	lib:dragging(XJZQTPXLQWJZAZMCTQU)
 	Instance.new('UICorner', XJZQTPXLQWJZAZMCTQU).CornerRadius = UDim.new(10, 0)
 	local HWDYPXNKWRO = Instance.new('UIStroke', XJZQTPXLQWJZAZMCTQU) 
-	HWDYPXNKWRO.Color = Color3.fromRGB(0, 18, 44)
+	HWDYPXNKWRO.Color = colorpallet[self.color].background2
 	HWDYPXNKWRO.Thickness = 4.5
 	local ZIRODNXVBFGSNPOXWWXS = Instance.new('ImageLabel', qwdqww)
-	ZIRODNXVBFGSNPOXWWXS.ImageColor3 = Color3.fromRGB(185, 212, 255)
+	ZIRODNXVBFGSNPOXWWXS.ImageColor3 = Ccolorpallet[self.color].text
 	ZIRODNXVBFGSNPOXWWXS.ClipsDescendants = false
 	ZIRODNXVBFGSNPOXWWXS.Name = randomString()
 	ZIRODNXVBFGSNPOXWWXS.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -189,12 +196,17 @@ function lib:Init(n, p)
 	ddd:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
 		SDQWD.CanvasSize = UDim2.fromOffset(0, ddd.AbsoluteContentSize.Y)
 	end)
+	function lib:change_color(n)
+		if colorpallet[n] then
+			self.color = tostring(n)
+		end
+	end
 	function lib:createbutton(text, func)
 		local but = Instance.new('TextButton')
 		but.Name = randomString()
 		but.Parent = SDQWD
 		but.AnchorPoint = Vector2.new(0.5, 0.5)
-		but.BackgroundColor3 = Color3.fromRGB(0, 29, 70)
+		but.BackgroundColor3 = colorpallet[self.color].element
 		but.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		but.BorderSizePixel = 0
 		but.Position = UDim2.new(0.512, 0, 0.063, 0)
@@ -202,7 +214,7 @@ function lib:Init(n, p)
 		but.AutoButtonColor = false
 		but.Font = Enum.Font.SourceSansBold
 		but.Text = text or 'Button'
-		but.TextColor3 = Color3.fromRGB(185, 212, 255)
+		but.TextColor3 = Ccolorpallet[self.color].text
 		but.TextSize = 21
 		local corner = Instance.new('UICorner')
 		corner.CornerRadius = UDim.new(0, 5)
@@ -220,14 +232,14 @@ function lib:Init(n, p)
 		labellol.Name = randomString()
 		labellol.Parent = SDQWD
 		labellol.AnchorPoint = Vector2.new(0.5, 0.5)
-		labellol.BackgroundColor3 = Color3.fromRGB(0, 29, 70)
+		labellol.BackgroundColor3 = colorpallet[self.color].element
 		labellol.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		labellol.BorderSizePixel = 0
 		labellol.Position = UDim2.new(0.512, 0, 0.063, 0)
 		labellol.Size = UDim2.new(0, 261, 0, 34)
 		labellol.Font = Enum.Font.SourceSansBold
 		labellol.Text = txt or 'Label'
-		labellol.TextColor3 = Color3.fromRGB(185, 212, 255)
+		labellol.TextColor3 = Ccolorpallet[self.color].text
 		labellol.TextSize = 21
 		local labelcorner = Instance.new('UICorner')
 		labelcorner.CornerRadius = UDim.new(0, 5)
