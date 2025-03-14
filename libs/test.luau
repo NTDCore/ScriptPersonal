@@ -139,7 +139,7 @@ function lib:Init(n, p)
 	SDQWD.Position = UDim2.new(0.5, 0, 0.512, 0)
 	SDQWD.Size = UDim2.new(0, 268, 0, 270)
 	SDQWD.CanvasSize = UDim2.new(0, 0, 1, 0)
-	SDQWD.ScrollBarImageColor3 = Ccolorpallet[self.color].text
+	SDQWD.ScrollBarImageColor3 = colorpallet[self.color].text
 	SDQWD.ScrollBarThickness = 2
 	local ddd = Instance.new('UIListLayout')
 	ddd.Name = randomString()
@@ -148,7 +148,7 @@ function lib:Init(n, p)
 	ddd.SortOrder = Enum.SortOrder.LayoutOrder
 	ddd.Padding = UDim.new(0, 5)
 	local BMEHRSKJICVYJ = Instance.new('ImageButton', qwdqww)
-	BMEHRSKJICVYJ.ImageColor3 = Ccolorpallet[self.color].text
+	BMEHRSKJICVYJ.ImageColor3 = colorpallet[self.color].text
 	BMEHRSKJICVYJ.ClipsDescendants = false
 	BMEHRSKJICVYJ.AnchorPoint = Vector2.new(0.5, 0.5)
 	BMEHRSKJICVYJ.Image = lib.assets['personalscripts/assets/closeicon.png']
@@ -162,7 +162,7 @@ function lib:Init(n, p)
 		qwdqww.Visible = false
 	end)
 	local XJZQTPXLQWJZAZMCTQU = Instance.new('ImageButton', Screen) 
-	XJZQTPXLQWJZAZMCTQU.ImageColor3 = Ccolorpallet[self.color].text
+	XJZQTPXLQWJZAZMCTQU.ImageColor3 = colorpallet[self.color].text
 	XJZQTPXLQWJZAZMCTQU.AutoButtonColor = false
 	XJZQTPXLQWJZAZMCTQU.ScaleType = Enum.ScaleType.Fit
 	XJZQTPXLQWJZAZMCTQU.ClipsDescendants = false
@@ -182,7 +182,7 @@ function lib:Init(n, p)
 	HWDYPXNKWRO.Color = colorpallet[self.color].background2
 	HWDYPXNKWRO.Thickness = 4.5
 	local ZIRODNXVBFGSNPOXWWXS = Instance.new('ImageLabel', qwdqww)
-	ZIRODNXVBFGSNPOXWWXS.ImageColor3 = Ccolorpallet[self.color].text
+	ZIRODNXVBFGSNPOXWWXS.ImageColor3 = colorpallet[self.color].text
 	ZIRODNXVBFGSNPOXWWXS.ClipsDescendants = false
 	ZIRODNXVBFGSNPOXWWXS.Name = randomString()
 	ZIRODNXVBFGSNPOXWWXS.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -214,7 +214,7 @@ function lib:Init(n, p)
 		but.AutoButtonColor = false
 		but.Font = Enum.Font.SourceSansBold
 		but.Text = text or 'Button'
-		but.TextColor3 = Ccolorpallet[self.color].text
+		but.TextColor3 = colorpallet[self.color].text
 		but.TextSize = 21
 		local corner = Instance.new('UICorner')
 		corner.CornerRadius = UDim.new(0, 5)
@@ -239,7 +239,7 @@ function lib:Init(n, p)
 		labellol.Size = UDim2.new(0, 261, 0, 34)
 		labellol.Font = Enum.Font.SourceSansBold
 		labellol.Text = txt or 'Label'
-		labellol.TextColor3 = Ccolorpallet[self.color].text
+		labellol.TextColor3 = colorpallet[self.color].text
 		labellol.TextSize = 21
 		local labelcorner = Instance.new('UICorner')
 		labelcorner.CornerRadius = UDim.new(0, 5)
