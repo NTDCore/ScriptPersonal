@@ -113,7 +113,7 @@ function lib:Init(n, p)
 	lo.Position = UDim2.new(0.5, 0, 0.059, 0)
 	lo.Size = UDim2.new(0, 282, 0, 38)
 	lo.Font = Enum.Font.SourceSansBold
-	lo.TextColor3 = Ccolorpallet[self.color].text
+	lo.TextColor3 = colorpallet[self.color].text
 	lo.TextSize = 21
 	lo.TextWrapped = true
 	local qdddd = Instance.new('Frame')
