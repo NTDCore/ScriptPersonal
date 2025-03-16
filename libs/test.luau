@@ -6,13 +6,24 @@ local lib = {
 		['personalscripts/assets/closeicon.png'] = 'rbxassetid://81055944487878'
 	}
 }
+local identifyexecutor = identifyexecutor() or function() return 'Roblox', 'Studio' end
+local getgenv = getgenv or function()
+	return {}
+end
 if identifyexecutor():find('Xeno') then
 	getgenv().cloneref = nil
 end
 local cloneref = cloneref or function(...) return ... end
-local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
+local runService = cloneref(game:GetService('RunService'))
 local inputService = cloneref(game:GetService('UserInputService'))
 local tweenService = cloneref(game:GetService('TweenService'))
+local gethui = gethui or function()
+	if runService:IsStudio() then
+		return cloneref(game:GetService('Players')).LocalPlayer.PlayerGui
+	end
+	return cloneref(game:GetService('CoreGui'))
+end
+
 local colorpallet = {
 	new = {
 		text = Color3.fromRGB(185, 212, 255),
