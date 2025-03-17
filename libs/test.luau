@@ -7,9 +7,9 @@ local lib = {
 	}
 }
 local identifyexecutor = identifyexecutor() or function() return 'Roblox', 'Studio' end
-local getgenv = getgenv or function()
-	return {}
-end
+--local getgenv = getgenv or function()
+--	return {}
+--end
 if identifyexecutor():find('Xeno') then
 	getgenv().cloneref = nil
 end
