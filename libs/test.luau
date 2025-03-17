@@ -6,10 +6,10 @@ local lib = {
 		['personalscripts/assets/closeicon.png'] = 'rbxassetid://81055944487878'
 	}
 }
-local identifyexecutor = identifyexecutor() or function() return 'Roblox', 'Studio' end
---local getgenv = getgenv or function()
---	return {}
---end
+local identifyexecutor = identifyexecutor or function() return 'Roblox', 'Studio' end
+local getgenv = getgenv or function()
+	return {}
+end
 if identifyexecutor():find('Xeno') then
 	getgenv().cloneref = nil
 end
