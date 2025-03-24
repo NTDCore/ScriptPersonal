@@ -67,7 +67,9 @@ unc.loadfile = function(file: path): ()
 	return loadfile(file)
 end
 
-unc.isreadonly = isreadonly or function(t: table): boolean
+unc.isreadonly = isreadonly or table.isfrozen
+
+--[[unc.isreadonly = isreadonly or function(t: table): boolean
 	local randomval = math.random(100, 1000)
 	local a, b = pcall(function()
 		t[randomval] = true
@@ -76,7 +78,7 @@ unc.isreadonly = isreadonly or function(t: table): boolean
 		t[randomval] = nil
 	end
 	return not a
-end
+end]]
 
 unc.isfile = function(file: path): boolean
 	if not isfile then
