@@ -24,7 +24,10 @@ export type RichPresenceImage = {
 function BloxstrapRPC:Init()
 	if not self.Init then
 		self.Init = true
-		function self:SendMessage(command, data: any)
+	end
+
+	if self.Init then
+		function self.SendMessage(command, data: any)
 			local json = httpService:JSONEncode({
 				command = command,
 				data = data
@@ -41,8 +44,16 @@ function BloxstrapRPC:Init()
 				data.timeEnd = math.round(data.timeEnd)
 			end
 
-			self:SendMessage('SetRichPresence', data)
+			self.SendMessage('SetRichPresence', data)
 		end
+	end
+	function self:Uninject()
+		for i,v in self do
+			if type(v) == 'function' then
+				v = nil
+			end
+		end
+		self.Init = nil
 	end
 end
 
