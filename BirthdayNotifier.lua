@@ -39,7 +39,7 @@ local playSound = function(id, volume)
 	sound:Destroy()
 end
 
-if isfile('birthdaylist.json') and readfile('birthdaylist.json') ~= '' then
+if isfile('birthdaylist.json') and readfile('birthdaylist.json') ~= '[]' then
 	birthday.List = httpService:JSONDecode(readfile('birthdaylist.json'))
 end
 
