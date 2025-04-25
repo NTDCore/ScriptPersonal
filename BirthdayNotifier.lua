@@ -23,22 +23,6 @@ local startergui = cloneref(game:GetService('StarterGui'))
 local httpService = cloneref(game:GetService('HttpService'))
 local soundService = cloneref(game:GetService('SoundService'))
 
-local playSound = function(id, volume)
-	if not isfile(id) and not id:find('rbxassetid') or not id:find('roblox.com/asset/?id=') then
-		writefile(id, game:HttpGet('https://raw.githubusercontent.com/NTDCore/ScriptPersonal/main/assets/'..id))
-	end
-
-	local sound = Instance.new('Sound')
-	sound.Parent = workspace
-	sound.SoundId = id:find('rbxassetid') or id:find('roblox.com/asset/?id=') and id or isfile(id) and getcustomasset(id)
-	sound.PlayOnRemove = true
-
-	if volume then 
-		sound.Volume = volume
-	end
-	sound:Destroy()
-end
-
 if isfile('birthdaylist.json') and readfile('birthdaylist.json') ~= '[]' then
 	birthday.List = httpService:JSONDecode(readfile('birthdaylist.json'))
 end
