@@ -1,6 +1,8 @@
 -- making this while bored + feeling something kinda weird
 -- recommended put this in autoexec
 
+repeat task.wait() until game:IsLoaded()
+
 local birthday = {List = {}}
 
 local cloneref = cloneref or function(reference) return reference end
@@ -32,14 +34,12 @@ function birthday:addList(name, date)
 		Name = name,
 		Date = date
 	})
-	-- table.foreach(self.List, print)
 end
 
 function birthday:removeList(name)
 	for i,v in self.List do
 		if v.Name == name then
 			table.remove(self.List, i)
-			table.foreach(self.List, print)
 		end
 	end
 end
@@ -49,7 +49,7 @@ function birthday:showList()
 	for i,v in self.List do
 		if type(v) == 'table' then
 			for _, data in v do
-				print(_..': '..data)
+				print(`{_}: {data}`)
 			end
 		end
 	end

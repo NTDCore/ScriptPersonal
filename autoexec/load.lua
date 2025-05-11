@@ -1,4 +1,5 @@
 -- // Birthday Notifier
+repeat task.wait() until game:IsLoaded()
 
 local birthday = {List = {}}
 
@@ -37,7 +38,6 @@ function birthday:removeList(name)
 	for i,v in self.List do
 		if v.Name == name then
 			table.remove(self.List, i)
-			table.foreach(self.List, print)
 		end
 	end
 end
@@ -47,7 +47,7 @@ function birthday:showList()
 	for i,v in self.List do
 		if type(v) == 'table' then
 			for _, data in v do
-				print(_..': '..data)
+				print(`{_}: {data}`)
 			end
 		end
 	end
