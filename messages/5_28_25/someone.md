@@ -1,0 +1,1 @@
+i just want someone who really understand and care about me
