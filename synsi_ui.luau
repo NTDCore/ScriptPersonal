@@ -1,6 +1,3 @@
-if identifyexecutor():find('Xeno') then
-	getgenv().cloneref = nil
-end
 local cloneref = cloneref or function(...) return ... end
 local gethui = gethui or function() return cloneref(game:GetService('CoreGui')) end
 local players = cloneref(game:GetService('Players'))
@@ -10,12 +7,13 @@ local synsaveinstance = loadstring(game:HttpGet('https://raw.githubusercontent.c
 uilib:Init('Synapse X Save Instance')
 uilib:createlabel('Credit to phoriah')
 uilib:createbutton('Save Instance', function()
-	for i,v in lplr.PlayerGui:GetChildren() do
-		if not cloneref(game:GetService('StarterGui'))[v.Name] then
+	for _, v in lplr.PlayerGui:GetChildren() do
+		if not cloneref(game:GetService('StarterGui'))[v]then
 			local ok = v:Clone()
 			ok.Parent = cloneref(game:GetService('StarterGui'))
 		end
 	end
+
 	synsaveinstance({
 		SaveBytecode = false,
 		ShowStatus = true,

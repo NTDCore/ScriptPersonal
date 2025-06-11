@@ -15,10 +15,11 @@ for i,v in getgc(true) do
 			Kill = rawget(v, 'Kill'),
 			GPUCrash = rawget(v, 'GPUCrash')
 		}
+
 		for a, b in adonis do
 			if b ~= nil and type(b) == 'function' then
 				print('Adonis detected: '..getinfo(b).name)
-				return
+				break
 			end
 		end
 	end
