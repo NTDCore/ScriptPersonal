@@ -68,6 +68,7 @@ function mainapi:new(image)
 					self.ImageLabel.ClipsDescendants = false
 					self.ImageLabel.BorderSizePixel = 0
 					self.ImageLabel.Size = UDim2.fromOffset(100, 100)
+					self.ImageLabel.ScaleType = Enum.ScaleType.Fit
 					self.ImageLabel.Looped = true
 					self.ImageLabel:Play()
 				else
