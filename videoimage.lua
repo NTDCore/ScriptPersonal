@@ -49,6 +49,7 @@ function mainapi:new(image)
 		self.ImageLabel.Position = UDim2.fromScale(0.042, 0.2)
 		self.ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 		self.ImageLabel.ClipsDescendants = false
+		self.ImageLabel.ScaleType = Enum.ScaleType.Fit
 		self.ImageLabel.BorderSizePixel = 0
 		self.ImageLabel.Size = UDim2.fromOffset(100, 100)
 	end
@@ -68,7 +69,6 @@ function mainapi:new(image)
 					self.ImageLabel.ClipsDescendants = false
 					self.ImageLabel.BorderSizePixel = 0
 					self.ImageLabel.Size = UDim2.fromOffset(100, 100)
-					self.ImageLabel.ScaleType = Enum.ScaleType.Fit
 					self.ImageLabel.Looped = true
 					self.ImageLabel:Play()
 				else
@@ -85,6 +85,7 @@ function mainapi:new(image)
 					self.ImageLabel.Position = UDim2.fromScale(0.042, 0.2)
 					self.ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 					self.ImageLabel.ClipsDescendants = false
+					self.ImageLabel.ScaleType = Enum.ScaleType.Fit
 					self.ImageLabel.BorderSizePixel = 0
 					self.ImageLabel.Size = UDim2.fromOffset(100, 100)
 				else
