@@ -10,7 +10,7 @@ test(function()
 	local __test = {locked = true}
 	table.freeze(__test)
 	setreadonly(__test, false)
-	assert(not table.isfrozen(__test), 'Failed to unfreeze the table. (imagien fake setreadonly lol)')
+	assert(not table.isfrozen(__test), 'Failed to unfreeze the table. (imagine fake setreadonly lol)')
 end)
 assert(getrawmetatable, 'Missing function: getrawmetable (' .. identifyexecutor() .. ')')
 
