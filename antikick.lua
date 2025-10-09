@@ -15,6 +15,6 @@ local newcclosure = newcclosure
 
 local old
 old=hookmetamethod(game,'__namecall',newcclosure(function(self, ...)
-	if checkcaller()and self == lplr and table.find({'kick', 'shutdown'}. string.lower(getnamecallmethod())) then return nil end
+	if checkcaller()and table.find({'kick', 'shutdown'}, string.lower(getnamecallmethod())) then return nil end
 	return old(self, ...)
 end))
