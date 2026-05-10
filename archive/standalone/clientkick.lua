@@ -7,14 +7,17 @@ local service = setmetatable({}, {
 })
 
 local players = service.Players
-
 local lplr = players.LocalPlayer
 
 local hookmetamethod = hookmetamethod
+local checkcaller = checkcaller
 local newcclosure = newcclosure
 
 local old
-old=hookmetamethod(game,'__namecall',newcclosure(function(self, ...)
-	if checkcaller()and table.find({'kick', 'shutdown'}, string.lower(getnamecallmethod())) then return nil end
+old = hookmetamethod(game, '__namecall', function(self, ...)
+	if checkcaller() and table.find({'kick', 'shutdown'}, string.lower(getnamecallmethod())) then
+		return nil
+	end
+
 	return old(self, ...)
-end))
+end)

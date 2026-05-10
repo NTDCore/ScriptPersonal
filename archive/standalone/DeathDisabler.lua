@@ -1,4 +1,4 @@
--- old bedwars disabler lol now it fully patched
+-- deatth disabler for roblox bedwars which is now patched
 
 local cloneref = cloneref or function(...) return ... end
 local players = cloneref(game:GetService('Players'))
