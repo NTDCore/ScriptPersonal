@@ -1,5 +1,5 @@
 --[[
-	Created on 5/5/2026 on 9:13AM GMT+7
+	Created on 5/5/2026 on 9:13AM GMT+7 lol
 --]]
 
 local Players: Players = game:GetService('Players')
