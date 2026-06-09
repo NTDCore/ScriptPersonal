@@ -26,20 +26,24 @@ local writefile = function(file, chunk): ()
 	return oldwritefile(file, chunk)
 end
 
-local oldmakefolder = makefolder
-local makefolder = function(file, chunk): ()
-	local split = file:split('/')
-	local result = ''
+local makefolder
 
-	table.remove(split, #split)
-	for _, v in split do
-		result ..= v.. (_ == #split and '' or '/')
-		if not isfolder(result) then
-			makefolder(result)
+if not identifyexecutor():find('Synapse Z') then
+	local oldmakefolder = getgenv().makefolder
+	makefolder = function(file, chunk): ()
+		local split = file:split('/')
+		local result = ''
+
+		table.remove(split, #split)
+		for _, v in split do
+			result ..= v.. (_ == #split and '' or '/')
+			if not isfolder(result) then
+				makefolder(result)
+			end
 		end
-	end
 
-	return oldmakefolder(file, chunk)
+		return oldmakefolder(file, chunk)
+	end
 end
 
 if not isfolder('GameDecompiler') then
